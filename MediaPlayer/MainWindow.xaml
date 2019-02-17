@@ -18,7 +18,8 @@
             <Slider x:Name="timerSlider" 
                     Width="250" 
                     ValueChanged="timerSlider_ValueChanged"
-                    
+                    Thumb.DragStarted="timerSlider_DragStarted"
+                    Thumb.DragCompleted="timerSlider_DragCompleted"
                     />
         </WrapPanel>
 

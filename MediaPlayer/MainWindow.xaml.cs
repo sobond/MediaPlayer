@@ -39,14 +39,20 @@ namespace MediaPlayer
         private void videoClipPlayHandler(object sender, RoutedEventArgs e)
         {
             videoClip.Play();
+            if (timer != null)
+                timer.Start();
         }
         private void videoClipPauseHandler(object sender, RoutedEventArgs e)
         {
             videoClip.Pause();
+            if (timer != null)
+                timer.Stop();
         }
         private void videoClipStopHandler(object sender, RoutedEventArgs e)
         {
             videoClip.Stop();
+            if (timer != null)
+                timer.Stop();
         }
 
         private void videoClip_MediaFailed(object sender, ExceptionRoutedEventArgs e)
@@ -78,6 +84,17 @@ namespace MediaPlayer
         private void timerSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             videoClip.Position = TimeSpan.FromSeconds(timerSlider.Value);
+        }
+
+        private void timerSlider_DragStarted(object sender, System.Windows.Controls.Primitives.DragStartedEventArgs e)
+        {
+            videoClipPauseHandler(sender, e);
+
+        }
+
+        private void timerSlider_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            videoClipPlayHandler(sender, e);
         }
     }
 }
