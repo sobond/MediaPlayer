@@ -10,13 +10,25 @@
         Loaded="Window_Loaded">
     <Window.Resources>
         <local:SecondsTimeSpanConverter x:Key="secondsTimeSpanConverter"/>
+        <local:TwoValuesPercentageConverter x:Key="twoValuesPercentageConverter"/>
     </Window.Resources>
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" Width="{Binding ElementName=mainWindow, Path=Width}">
             <StatusBarItem HorizontalAlignment="Center">
                 <Grid>
-                    <ProgressBar Height="15" Width="{Binding ElementName=mainWindow, Path=Width}"/>
-                    <TextBlock Text="0%" HorizontalAlignment="Center"/>
+                    <ProgressBar Height="15" 
+                                 Width="{Binding ElementName=mainWindow, Path=Width}" 
+                                 Value="{Binding ElementName=timerSlider, Path=Value}" 
+                                 Maximum="{Binding ElementName=timerSlider, Path=Maximum}"/>
+                    <TextBlock HorizontalAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource twoValuesPercentageConverter}"
+                                          StringFormat="{}{0:p}">
+                                <Binding ElementName="timerSlider" Path="Value"/>
+                                <Binding ElementName="timerSlider" Path="Maximum"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </Grid>
             </StatusBarItem>
             
