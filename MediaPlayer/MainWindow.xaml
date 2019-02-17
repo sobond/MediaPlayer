@@ -33,7 +33,7 @@
             </StatusBarItem>
             
         </StatusBar>
-        <WrapPanel DockPanel.Dock="Bottom">
+        <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3">
             <Button Click="videoClipPlayHandler">Play</Button>
             <Button Click="videoClipPauseHandler">Pause</Button>
             <Button Click="videoClipStopHandler">Stop</Button>
