@@ -73,7 +73,8 @@ namespace MediaPlayer
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
 
-            timer.Start();
+            totalTimeOfVideo.Content = videoClip.NaturalDuration.TimeSpan.ToString(@"hh\:mm\:ss");
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)

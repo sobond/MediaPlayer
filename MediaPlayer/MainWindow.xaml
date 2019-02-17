@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Loaded="Window_Loaded">
+    <Window.Resources>
+        <local:SecondsTimeSpanConverter x:Key="secondsTimeSpanConverter"/>
+    </Window.Resources>
     <DockPanel>
         <WrapPanel DockPanel.Dock="Bottom">
             <Button Click="videoClipPlayHandler">Play</Button>
@@ -21,6 +24,8 @@
                     Thumb.DragStarted="timerSlider_DragStarted"
                     Thumb.DragCompleted="timerSlider_DragCompleted"
                     />
+            <Label x:Name="timeOfWatchedVideo" Content="{Binding ElementName=timerSlider, Path=Value, Converter={StaticResource secondsTimeSpanConverter}}"/>
+            <Label x:Name="totalTimeOfVideo"/>
         </WrapPanel>
 
         <!--Source="http://videokurs.pl/filmy/logika-i-zbiory-lekcja15-zbiory.flv"-->
