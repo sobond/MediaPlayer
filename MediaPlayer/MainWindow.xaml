@@ -5,8 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Bottom">
+            <Button Click="videoClipPlayHandler">Play</Button>
+            <Button Click="videoClipPauseHandler">Pause</Button>
+            <Button Click="videoClipStopHandler">Stop</Button>
+            <Label Content="Volume: "/>
+            <Slider Value="{Binding ElementName=videoClip, Path=Volume}" Maximum="1" Width="150"/>
+            <Label Content="Time: "/>
+            <Slider x:Name="timerSlider" 
+                    Width="250" 
+                    ValueChanged="timerSlider_ValueChanged"
+                    
+                    />
+        </WrapPanel>
+
+        <!--Source="http://videokurs.pl/filmy/logika-i-zbiory-lekcja15-zbiory.flv"-->
+        <MediaElement 
+            x:Name="videoClip" 
+            Volume="0.01"
+            LoadedBehavior="Manual" 
+            Source="film.mp4" 
+            MediaFailed="videoClip_MediaFailed"
+            MediaOpened ="videoClip_MediaOpened"
+            
+            />
+
+    </DockPanel>
 </Window>
