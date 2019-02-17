@@ -5,12 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" 
+        Title="MainWindow" Height="450" Width="700" 
+        MinWidth="700" MinHeight ="400"
         x:Name="mainWindow"
         Loaded="Window_Loaded">
     <Window.Resources>
         <local:SecondsTimeSpanConverter x:Key="secondsTimeSpanConverter"/>
         <local:TwoValuesPercentageConverter x:Key="twoValuesPercentageConverter"/>
+        <Style TargetType="Button" x:Name="btnStyle">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="#c6ecd9"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Foreground" Value="#133926" />
+        </Style>
+        <Style TargetType="Label" x:Name="lblStyle">
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="1"/>
+            
+        </Style>
+        <Style TargetType="Slider" x:Name="sliderStyle">
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="#ecf9f2"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="0,1,0,1"/>
+        </Style>
+        
     </Window.Resources>
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" Width="{Binding ElementName=mainWindow, Path=Width}">
@@ -19,7 +40,9 @@
                     <ProgressBar Height="15" 
                                  Width="{Binding ElementName=mainWindow, Path=Width}" 
                                  Value="{Binding ElementName=timerSlider, Path=Value}" 
-                                 Maximum="{Binding ElementName=timerSlider, Path=Maximum}"/>
+                                 Maximum="{Binding ElementName=timerSlider, Path=Maximum}"
+                                 Foreground="#8cd9b3"
+                                 />
                     <TextBlock HorizontalAlignment="Center">
                         <TextBlock.Text>
                             <MultiBinding Converter="{StaticResource twoValuesPercentageConverter}"
@@ -31,17 +54,17 @@
                     </TextBlock>
                 </Grid>
             </StatusBarItem>
-            
+
         </StatusBar>
-        <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3">
+        <WrapPanel DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="3" Background="#ecf9f2">
             <Button Click="videoClipPlayHandler">Play</Button>
             <Button Click="videoClipPauseHandler">Pause</Button>
             <Button Click="videoClipStopHandler">Stop</Button>
             <Label Content="Volume: "/>
-            <Slider Value="{Binding ElementName=videoClip, Path=Volume}" Maximum="1" Width="150"/>
+            <Slider Value="{Binding ElementName=videoClip, Path=Volume}" Maximum="1" Width="100"/>
             <Label Content="Time: "/>
             <Slider x:Name="timerSlider" 
-                    Width="250" 
+                    Width="200" 
                     ValueChanged="timerSlider_ValueChanged"
                     Thumb.DragStarted="timerSlider_DragStarted"
                     Thumb.DragCompleted="timerSlider_DragCompleted"
