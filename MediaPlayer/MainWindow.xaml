@@ -5,12 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MediaPlayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="450" Width="800" 
+        x:Name="mainWindow"
         Loaded="Window_Loaded">
     <Window.Resources>
         <local:SecondsTimeSpanConverter x:Key="secondsTimeSpanConverter"/>
     </Window.Resources>
     <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom" Width="{Binding ElementName=mainWindow, Path=Width}">
+            <StatusBarItem HorizontalAlignment="Center">
+                <Grid>
+                    <ProgressBar Height="15" Width="{Binding ElementName=mainWindow, Path=Width}"/>
+                    <TextBlock Text="0%" HorizontalAlignment="Center"/>
+                </Grid>
+            </StatusBarItem>
+            
+        </StatusBar>
         <WrapPanel DockPanel.Dock="Bottom">
             <Button Click="videoClipPlayHandler">Play</Button>
             <Button Click="videoClipPauseHandler">Pause</Button>
